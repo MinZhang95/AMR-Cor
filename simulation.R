@@ -14,3 +14,5 @@ for (i in 1:10000) {
 }
 power <- mean(res)
 power
+
+power %>% print # this is a change

@@ -58,15 +58,15 @@ transformed parameters {
 model {
   mua ~ normal(0, 10); 
   mub ~ normal(0, 10); 
-  theta ~ normal(0, 10);
+  theta ~ normal(0, 100);
   
   gamma0 ~ cauchy(0, 2); 
   gamma1 ~ cauchy(0, 2); 
   tau ~ cauchy(0, 2);
   
-  rho0 ~ lkj_corr(0.001); 
-  rho1 ~ lkj_corr(0.001); 
-  eta ~ lkj_corr(0.001);
+  rho0 ~ lkj_corr(1); 
+  rho1 ~ lkj_corr(1); 
+  eta ~ lkj_corr(1);
   
   for (r in 1:T) {
     beta0[r] ~ multi_normal(mu0, quad_form_diag(rho0, gamma0));
@@ -88,5 +88,4 @@ model {
                      intervalCensoredNormal_lpmf(y[i] | beta1[t, s], sigma1[s], intervalBreaks));
   }
 }
-
 
